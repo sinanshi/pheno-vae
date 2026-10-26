@@ -1,0 +1,34 @@
+# data_structure.txt -- what the data is expected to look like.
+#
+# Checked by:  ./bundle.sh check
+#
+# Paths are relative to the project root. Data files never travel in a bundle;
+# this file records their shape so the local mirror and the platform agree.
+# Run the check on the platform before submitting jobs: most bugs are a
+# data-shape mismatch, and this catches that class in seconds.
+#
+# Grammar:
+#   file <path>
+#     desc   <free text>
+#     delim  , | tab
+#     header yes | no
+#     cols   <n>  or  <n> + N     (N = variable, e.g. one column per sample)
+#     blank  <n>                 first n header fields are empty in the file
+#     col    <name> <type> [note]
+#     colset <range> <type> [note]
+#     rows   <approx>
+#   end
+#
+# Replace the example below with the real inputs (tools/make_mock.R writes a
+# mock of it under data/ for local runs).
+
+file data/example_table.tsv
+  desc    example input: one row per sample
+  delim   tab
+  header  yes
+  cols    4
+  col     id     str    sample identifier (e.g. plate key)
+  col     group  str    analysed separately, one LSF job each
+  col     x      float
+  col     y      float
+end
